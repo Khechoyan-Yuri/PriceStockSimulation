@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.util.Scanner;
 
 public class Stock {
 	//Variables
@@ -6,7 +7,7 @@ public class Stock {
 	private String companySymbol;
 	private double currentPrice;
 	private double nextPrice;
-	private int randomNumber;
+	private double randomNumber;
 	
 	
 	public Stock() {
@@ -25,7 +26,7 @@ public class Stock {
 		nextPrice = nP;
 	}
 	
-	public void setName(String n) {
+	public void setName(String n){
 		
 		companyName = n;
 	}
@@ -42,16 +43,6 @@ public class Stock {
 		else {
 			
 			currentPrice = 1;
-		}
-	}
-	
-	public void setNextPrice(double nP) {
-		if(nP > 0) {
-			nextPrice = nP;
-		}
-		else {
-			
-			nextPrice = 1;
 		}
 	}
 	
@@ -75,10 +66,26 @@ public class Stock {
 		return nextPrice;
 	}
 	
-	public double stockPriceChange() {
+	public void priceChange() {
 		Random randInt = new Random();
 		randomNumber = randInt.nextInt(10);
+		boolean decide;
+		Random negOrPos = new Random();
 		
-		return randomNumber;
+		decide = negOrPos.nextBoolean();
+		
+		if(decide) {
+			nextPrice = currentPrice-(currentPrice*randomNumber);
+		}
+		
+		else {
+			nextPrice = currentPrice+(currentPrice*randomNumber);
+		}
+		
 	}
+	
+	public void printResults(String cN, String cS, double cP, double nP, double rn) {
+		System.out.printf("%s\t%s\t%.2f\t%.2f\t%.2f\t%.2f\n", cN, cS, cP, nP, rn);
+	}
+	
 }

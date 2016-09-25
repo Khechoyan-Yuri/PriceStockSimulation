@@ -18,8 +18,32 @@ OUTPUT
 ASSUMPTIONS
 - None
 */
+
 public class PriceStockSimulation {
 	public static void main(String[] args){
+		String companyName = new String();
+		String companySymbol = new String();
+		double currentPrice = 0;
+		double nextPrice = 0;
+		double priceChange = 0;
+		double percentChange = 0;
+		
+		
+		Stock object = new Stock();
+		
+		System.out.print("Please enter the name of the stock: ");
+		object.setName(companyName);
+		System.out.print("Please enter the symbol of the stock: ");
+		object.setSymbol(companySymbol);
+		System.out.print("Please enter yesterday's price: ");
+		object.setCurrentPrice(currentPrice);
+		object.priceChange();
+		companyName = object.getName();
+		companySymbol = object.getSymbol();
+		currentPrice = object.getCurrentPrice();
+		nextPrice = object.getNextPrice();
+		
+		
 		
 	}
 }
