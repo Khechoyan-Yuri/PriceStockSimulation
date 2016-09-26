@@ -1,5 +1,4 @@
 import java.util.Random;			//Import Random Generator
-import java.util.Scanner;			//Import Scanner Object
 
 public class Stock {
 	//Variables
@@ -47,6 +46,25 @@ public class Stock {
 		}
 	}
 	
+	public void setNextPrice(double nP) {
+		
+		if(nP > 0) {
+			nextPrice = nP;
+		}
+		else {
+			nextPrice = 1;
+		}
+	}
+	
+	public void setPercentage(double p) {
+		if(p > 0) {
+			randomNumber = p;
+		}
+		else {
+			randomNumber = 1.00;
+		}
+	}
+	
 	public String getName() {
 		//getName Method to access companyName variable
 		return companyName;
@@ -67,29 +85,37 @@ public class Stock {
 		return nextPrice;
 	}
 	
+	public double getPercentage() {
+		return randomNumber;
+	}
+	
 	public void priceChange() {
 		//priceChange Method used to create 10% changes (Positive or Negative) 
 		//changes to the Stock that user has entered prior
-		Random randInt = new Random();
-		randomNumber = randInt.nextInt(10);
 		boolean decide;
+		double percent;
+		double currentPrice;
+		Random randInt = new Random();
+		setPercentage(randInt.nextInt(10));
+		percent = getPercentage();
+		currentPrice = getCurrentPrice();
 		Random negOrPos = new Random();
 		
 		decide = negOrPos.nextBoolean();
 		
 		if(decide) {
-			nextPrice = currentPrice-(currentPrice*randomNumber);
+			setNextPrice(currentPrice-(currentPrice*.01*percent));
 		}
 		
 		else {
-			nextPrice = currentPrice+(currentPrice*randomNumber);
+			setNextPrice(currentPrice+(currentPrice*.01*percent));
 		}
 		
 	}
 	
 	public void printResults(String cN, String cS, double cP, double nP, double rn) {
 		//Print results to screen for user to see the Stock Prices Fluctuation
-		System.out.printf("%s\t%s\t%.2f\t%.2f\t%.2f\t%.2f\n", cN, cS, cP, nP, rn);
+		System.out.printf("%s\t%s\t%.2f\t%.2f\t%.2f\t%.2f\n", cN, cS, cP, nP, nP-cP, rn);
 	}
 	
 }

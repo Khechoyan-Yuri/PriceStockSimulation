@@ -1,3 +1,4 @@
+
 /* ========================================================================== */
 /*	PROGRAM Price Stock Machine
     AUTHOR: Yuri Khechoyan & Jessie Wilkins
@@ -45,14 +46,19 @@ ASSUMPTIONS
 - None
 */
 
+import java.util.Scanner;
+
 public class PriceStockSimulation {
 	public static void main(String[] args){
 		String companyName = new String();		//companyName variable: new String Method
 		String companySymbol = new String();	//companySymbol variable: new String Method
 		double currentPrice = 0;				//currentPrice set to 0: before user input
 		double nextPrice = 0;					//nextPrice set to 0: before user input
-		double priceChange = 0;					//priceChange set to 0: before user input
 		double percentChange = 0;				//percentChange set to 0: before user input
+		
+		Scanner compNameInput = new Scanner(System.in);
+		Scanner compSymbolInput = new Scanner(System.in);
+		Scanner currentPriceInput = new Scanner(System.in);
 		
 		//Creates new Object of Stock for user input (different from default)
 		Stock object = new Stock();
@@ -62,18 +68,35 @@ public class PriceStockSimulation {
 		//*******************************
 		
 		System.out.print("Please enter the name of the stock: ");
+		companyName = compNameInput.nextLine();
 		object.setName(companyName);
 		System.out.print("Please enter the symbol of the stock: ");
+		companySymbol = compNameInput.nextLine();
 		object.setSymbol(companySymbol);
 		System.out.print("Please enter yesterday's price: ");
+		currentPrice = currentPriceInput.nextDouble();
 		object.setCurrentPrice(currentPrice);
 		object.priceChange();
 		companyName = object.getName();
 		companySymbol = object.getSymbol();
 		currentPrice = object.getCurrentPrice();
 		nextPrice = object.getNextPrice();
+		percentChange = object.getPercentage();
 		
 		
+		for(int i=1; i<=30; i++) {
+			
+			object.printResults(companyName, companySymbol, currentPrice, nextPrice, percentChange);
+			object.setCurrentPrice(nextPrice);
+			object.priceChange();
+			currentPrice = object.getCurrentPrice();
+			nextPrice = object.getNextPrice();
+			percentChange = object.getPercentage();
+		}
+		
+		compNameInput.close();
+		compSymbolInput.close();
+		currentPriceInput.close();
 		
 	}//Closes Main Method
 }//Closes PriceStockSimulation Class
