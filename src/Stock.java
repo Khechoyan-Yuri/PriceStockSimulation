@@ -17,6 +17,35 @@ public class Stock {
 		nextPrice = 46.87;
 	}
 	
+	public void WhichDefaultValue(String cN, String cS, double cP) {
+		if(!(cN.contentEquals("NONE")) && !(cS.contentEquals("NA")) && cP != 0.0) {
+			setName(cN);
+			setSymbol(cS);
+			setCurrentPrice(cP); 
+		}
+		else if(!(cN.contentEquals("NONE")) && cP != 0.0){
+			setSymbol(cS);
+			setCurrentPrice(cP); 
+		}
+		else if(!(cN.contentEquals("NONE")) && cP != 0.0){
+			setName(cN);
+			setCurrentPrice(cP); 
+		}
+		else if(!(cN.contentEquals("NONE"))&& !(cS.contentEquals("NA"))){
+			setName(cN);
+			setSymbol(cS); 
+		}
+		else if(!(cN.contentEquals("NONE"))) {
+			setName(cN);
+		}
+		else if(!(cS.contentEquals("NA"))) {
+			setSymbol(cS);
+		}
+		else if(cP!=0.0) {
+			setCurrentPrice(cP);
+		}
+	}
+	
 	public Stock(String n, String s, double cP, double nP) {
 		//Stock Method that creates user instance of Stock details
 		companyName = n;

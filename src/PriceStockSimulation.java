@@ -67,15 +67,20 @@ public class PriceStockSimulation {
 		//		START OF PROGRAM		*
 		//*******************************
 		
+		System.out.print("If the user enters NONE, NA, and 0.0 for the name of the company, the symbol, and yesterday's price ");
+		System.out.println("respectively, it will use default values.");
+		
 		System.out.print("Please enter the name of the stock: ");
 		companyName = compNameInput.nextLine();
-		object.setName(companyName);
+		
 		System.out.print("Please enter the symbol of the stock: ");
 		companySymbol = compNameInput.nextLine();
-		object.setSymbol(companySymbol);
+		
 		System.out.print("Please enter yesterday's price: ");
 		currentPrice = currentPriceInput.nextDouble();
-		object.setCurrentPrice(currentPrice);
+		
+		object.WhichDefaultValue(companyName, companySymbol, currentPrice);
+		
 		object.priceChange();
 		companyName = object.getName();
 		companySymbol = object.getSymbol();
