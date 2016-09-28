@@ -8,73 +8,75 @@ public class Stock {
 	private double nextPrice;		//Double holding Next Price of Stock
 	private double randomNumber;	//Double holding random Number
 	
-	
+	/**
+	 * This sets the private variables to the default
+	 */
 	public Stock() {
 		//Assigns default values for those variables
 		companyName = "Microsoft";
 		companySymbol = "MSFT";
 		currentPrice = 46.87;
 		nextPrice = 46.87;
-	}
-	
+	}//Closes Stock Method
+	/**
+	 * Determines if the default values should be used
+	 * @param cN
+	 * @param cS
+	 * @param cP
+	 */
 	public void WhichDefaultValue(String cN, String cS, double cP) {
 		if(!(cN.contentEquals("NONE")) && !(cS.contentEquals("NA")) && cP != 0.0) {
 			setName(cN);
 			setSymbol(cS);
 			setCurrentPrice(cP); 
-		}
-		else if(!(cN.contentEquals("NONE")) && cP != 0.0){
-			setSymbol(cS);
-			setCurrentPrice(cP); 
-		}
-		else if(!(cN.contentEquals("NONE")) && cP != 0.0){
-			setName(cN);
-			setCurrentPrice(cP); 
-		}
-		else if(!(cN.contentEquals("NONE"))&& !(cS.contentEquals("NA"))){
-			setName(cN);
-			setSymbol(cS); 
-		}
-		else if(!(cN.contentEquals("NONE"))) {
-			setName(cN);
-		}
-		else if(!(cS.contentEquals("NA"))) {
-			setSymbol(cS);
-		}
-		else if(cP!=0.0) {
-			setCurrentPrice(cP);
-		}
-	}
-	
+		}//Closes if statement
+		
+	}//Closes WhichDefaultValue Method
+	/**
+	 * Sets the private variables to the given values
+	 * @param n
+	 * @param s
+	 * @param cP
+	 * @param nP
+	 */
 	public Stock(String n, String s, double cP, double nP) {
 		//Stock Method that creates user instance of Stock details
 		companyName = n;
 		companySymbol = s;
 		currentPrice = cP;
 		nextPrice = nP;
-	}
-	
+	}//Closes public Stock Method
+	/**
+	 * This sets the company name to the given string
+	 * @param n
+	 */
 	public void setName(String n){
-		//Method to set companyName to 'n'
 		companyName = n;
 	}
-	
+	/**
+	 * This sets the company symbol to the given string
+	 * @param s
+	 */
 	public void setSymbol(String s) {
-		//Method to set companySymbol to 's'
 		companySymbol = s;
 	}
-	
+	/**
+	 * This sets the current price to the given double
+	 * @param cP
+	 */
 	public void setCurrentPrice(double cP) {
 		//Error Checking for: currentPrice > 0; otherwise set to 1
 		if(cP > 0) {
 			currentPrice = cP;
 		}
 		else {
-			
 			currentPrice = 1;
 		}
-	}
-	
+	}//Closes setCurrentPrice Method
+	/**
+	 * This sets the next price to the given double
+	 * @param nP
+	 */
 	public void setNextPrice(double nP) {
 		
 		if(nP > 0) {
@@ -83,8 +85,11 @@ public class Stock {
 		else {
 			nextPrice = 1;
 		}
-	}
-	
+	}//Closes setNextPrice Method
+	/**
+	 * This sets the percentage to the given double
+	 * @param p
+	 */
 	public void setPercentage(double p) {
 		if(p > 0) {
 			randomNumber = p;
@@ -92,35 +97,50 @@ public class Stock {
 		else {
 			randomNumber = 1.00;
 		}
-	}
-	
+	}//Closes setPercentage Method
+	/**
+	 * This returns the company name 
+	 * @return
+	 */
 	public String getName() {
 		//getName Method to access companyName variable
 		return companyName;
 	}
-	
+	/**
+	 * This returns the company symbol
+	 * @return
+	 */
 	public String getSymbol() {
 		//getSymbol Method to access companySymbol variable
 		return companySymbol;
 	}
-	
+	/**
+	 * This returns the current price
+	 * @return
+	 */
 	public double getCurrentPrice() {
 		//getCurrentPrice Method to access currentPrice variable
 		return currentPrice;
 	}
-	
+	/**
+	 * This returns the next price 
+	 * @return
+	 */
 	public double getNextPrice() {
 		//getNextPrice Method to access nextPrice variable
 		return nextPrice;
 	}
-	
+	/**
+	 * This returns the percentage
+	 * @return
+	 */
 	public double getPercentage() {
 		return randomNumber;
 	}
-	
+	/**
+	 * This changes next price according the percentage by a negative or positive number
+	 */
 	public void priceChange() {
-		//priceChange Method used to create 10% changes (Positive or Negative) 
-		//changes to the Stock that user has entered prior
 		boolean decide;
 		double percent;
 		double currentPrice;
@@ -140,11 +160,26 @@ public class Stock {
 			setNextPrice(currentPrice+(currentPrice*.01*percent));
 		}
 		
-	}
+	}//Closes priceChange Method
 	
+	/**
+	 * Prints Headers for each Category
+	 */
+	/*public static void printHeaders(){
+		System.out.println("STOCK\tSYMBOL\tYESTERDAY'S PRICE\tTODAY'S PRICE\tPRICE MOVEMENT\tCHANGE PERCENT");
+	}
+	*/
+	/**
+	 * This prints the Headers & stock information
+	 * @param cN
+	 * @param cS
+	 * @param cP
+	 * @param nP
+	 * @param rn
+	 */
 	public void printResults(String cN, String cS, double cP, double nP, double rn) {
 		//Print results to screen for user to see the Stock Prices Fluctuation
 		System.out.printf("%s\t%s\t%.2f\t%.2f\t%.2f\t%.2f\n", cN, cS, cP, nP, nP-cP, rn);
 	}
 	
-}
+}//Closes public Stock Class
