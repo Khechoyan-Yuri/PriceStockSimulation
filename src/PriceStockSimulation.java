@@ -45,19 +45,21 @@ ASSUMPTIONS
 - None
 */
 
-import java.util.Scanner;
+import java.util.Scanner;									//This imports the Scanner class used for input
 
 public class PriceStockSimulation {
 	public static void main(String[] args){
-		String companyName = new String();		//companyName variable: new String Method
-		String companySymbol = new String();	//companySymbol variable: new String Method
-		double currentPrice = 0;				//currentPrice set to 0: before user input
-		double nextPrice = 0;					//nextPrice set to 0: before user input
-		double percentChange = 0;				//percentChange set to 0: before user input
-		
-		Scanner compNameInput = new Scanner(System.in);
-		Scanner compSymbolInput = new Scanner(System.in);
-		Scanner currentPriceInput = new Scanner(System.in);
+		//Variables
+		String companyName = new String();					//companyName variable: new String Method
+		String companySymbol = new String();				//companySymbol variable: new String Method
+		double currentPrice = 0;							//currentPrice set to 0: before user input
+		double nextPrice = 0;								//nextPrice set to 0: before user input
+		double percentChange = 0;							//percentChange set to 0: before user input
+		final int NUMBER_OF_DAYS = 30;						//NUMBER_OF_DAYS set to 30: constant used as limit for the for loop
+				
+		Scanner compNameInput = new Scanner(System.in);		//This creates an object for the company name input
+		Scanner compSymbolInput = new Scanner(System.in);	//This creates an object for the company symbol input
+		Scanner currentPriceInput = new Scanner(System.in);	//This creates an object for the current price input
 		
 		//Creates new Object of Stock for user input (different from default)
 		Stock object = new Stock();
@@ -66,41 +68,77 @@ public class PriceStockSimulation {
 		//		START OF PROGRAM		*
 		//*******************************
 		
+		//This prints out the condition for using default values
 		System.out.print("If the user enters NONE, NA, and 0.0 for the name of the company, the symbol, and yesterday's price ");
 		System.out.println("respectively, it will use default values.");
 		
+		//This prints out the command to enter the name of the stock
 		System.out.print("Please enter the name of the stock: ");
+		
+		//User enters the company name
 		companyName = compNameInput.nextLine();
 		
+		//This prints out the command to enter the symbol of the stock
 		System.out.print("Please enter the symbol of the stock: ");
-		companySymbol = compNameInput.nextLine();
 		
+		//User enters the company symbol
+		companySymbol = compSymbolInput.nextLine();
+		
+		//This prints out the command to enter yesterday's price
 		System.out.print("Please enter yesterday's price: ");
+		
+		//User enters the current price 
 		currentPrice = currentPriceInput.nextDouble();
 		
+		//This determines if the default values should be used
 		object.WhichDefaultValue(companyName, companySymbol, currentPrice);
 		
+		//This sets the next price
 		object.priceChange();
+		
+		//This assigns the company name to the variable
 		companyName = object.getName();
+		
+		//This assigns the company symbol to the variable
 		companySymbol = object.getSymbol();
+		
+		//This assigns the current price to the variable
 		currentPrice = object.getCurrentPrice();
+		
+		//This assigns the current price to the variable
 		nextPrice = object.getNextPrice();
+		
+		//This assigns the next price to the variable
 		percentChange = object.getPercentage();
 		
+		//This prints the category headers for each column
+		object.printHeaders();
 		
-		for(int i=1; i<=30; i++) {
-			
+		//This starts the for loop that iterates for 30 times
+		for(int i=1; i<=NUMBER_OF_DAYS; i++) {
+			//This prints out the stock description
 			object.printResults(companyName, companySymbol, currentPrice, nextPrice, percentChange);
+			
+			//This sets the current price to the value of the next price
 			object.setCurrentPrice(nextPrice);
+			
+			//This changes the price of the next price
 			object.priceChange();
+			
+			//This assigns the current price to the variable
 			currentPrice = object.getCurrentPrice();
+			
+			//This assigns the next price to the variable
 			nextPrice = object.getNextPrice();
+			
+			//This assigns the percentage to the variable
 			percentChange = object.getPercentage();
 		}//Closes 'for' loop
-		
-		compNameInput.close();
-		compSymbolInput.close();
-		currentPriceInput.close();
+				
+		//This closes the input objects
+		compNameInput.close();								//This closes input object of the company name input
+		compSymbolInput.close();							//This closes input object of the company symbol input
+		currentPriceInput.close();							//This closes input object of the current price input
 		
 	}//Closes Main Method
 }//Closes PriceStockSimulation Class
